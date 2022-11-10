@@ -46,7 +46,7 @@ class ElectronicOperator(AbstractOperator):
         dtype: DType = None,
         epsilon : float = 0.0,
         ref: float = 0.0,
-        random: bool = False
+        order =  False
     ):
         r"""
         Constructs a fermion operator given the single terms (set of
@@ -110,8 +110,13 @@ class ElectronicOperator(AbstractOperator):
         self.ref = ref
         self.time = 0
         self.indices = np.arange(hilbert.size // 2, dtype = int)#[::-1]
-        if random:
-            np.random.shuffle(self.indices)
+        if order:
+            if order == "random":
+                np.random.shuffle(self.indices)
+            elif order == "reverse":
+                self.indices = self.indices[::-1]
+            else:
+                self.indices = order
         #idx = np.reshape(self.indices,(2,hilbert.size // 4))
         #idx[1] = idx[1][::-1]
         #self.indices = np.ravel(idx.T)
