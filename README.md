@@ -64,4 +64,8 @@ For convenience, simply use the provided run_MODEL.sh scripts. The required inpu
 
 More optimization specific settings, e.g. number of samples, learning rate, etc.,  can be set in the .sh files. For all avaialble options read the --help option of the /scripts/model.py files. 
 
+## Preoptimization
+It is possible to train autoregressive models towards an approximate wave function (e.g. from a MP2 or CISD calculation). This is included in the option pretraing option, the target wawve function can be set in the model.py files. The training is performed until a given overlap is reached or to a maximum of 20000 steps Note that preoptimizations for larger systems can take some time since the MP2 and CISD impleemntations are inefficient.
+
+
 

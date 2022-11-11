@@ -30,6 +30,9 @@ from arnn.weighted_qgt import QGTJacobianPyTree
 from arnn.supervised import pretraining
 import argparse
 from scipy.special import binom
+import os
+
+loc = os.path.dirname(__file__)
 
 
 parser = argparse.ArgumentParser(description='Run a single VMC optimization with a RNN network', allow_abbrev=True)
@@ -120,7 +123,8 @@ hi = nkx.hilbert.SpinOrbitalFermions(number_of_orbitals,1/2,n_alpha_beta)  # Num
 #############################
 #Define Hamiltonian, use prepared OpenFermion operator!
 ############################
-ha =ElectronicOperator.from_openfermion(hi,f"/data/jkocklaeuner/Master/NAQS/data/{name}.hdf5")
+file_name = os.path.join(loc, f'../data/{name}.hdf5')
+ha =ElectronicOperator.from_openfermion(hi,file_name)
 
 # Autoregressive neural network
 

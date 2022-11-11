@@ -1,0 +1,24 @@
+Running script rbm.py 
+Check options via scripts/rnn.py --help 
+General setting:
+Molecule LiH 
+Restart calculation: False 
+Spin Orbitals 12 
+Electrons (alpha beta) (2, 2) 
+Multiplicity 0 
+Seed 111 
+Iterations 10000 
+Learning rate 0.01 
+Samples per step 10000 
+Valid Hilbert space size 225.0 
+
+Model parameters: 
+System RBM 
+Dtype Complex 
+Hidden layer density 2
+/home/jkocklaeuner/.local/lib/python3.9/site-packages/netket/vqs/mc/mc_state/state.py:58: UserWarning: n_samples=10000 (10000 per MPI rank) does not divide n_chains=1024, increased to 10240 (10240 per MPI rank)
+  warnings.warn(
+Model has 324 parameters
+Output is written to LiH_111.log
+Model parameters are saved to LiH_111.mpack
+Starting calculation at Fri Nov 11 12:35:43 2022

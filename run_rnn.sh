@@ -4,7 +4,7 @@
 
 NAME=$1 #Molecule Name, should be a NAME.hdf5 file in /data
 ITERS=10000 #Number of optimization iterations
-SPEC=TEST #Specify saving directory
+SPEC=RNN #Specify saving directory
 ELECTRONS=$2 # Number of electrons
 SPIN=$3 # Multiplicity
 ORBITALS=$4 # Spatial Orbitals

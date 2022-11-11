@@ -1,0 +1,40 @@
+Number of samples exceeds hilbert space size! Samples set to hilbert space size
+Running script nade.py 
+Check options via scripts/rnn.py --help 
+General setting:
+Molecule LiH 
+Restart calculation: False 
+Spin Orbitals 12 
+Electrons (alpha beta) (2, 2) 
+Multiplicity 0 
+Seed 111 
+Iterations 10000 
+Learning rate 0.001 
+Samples per step 225 
+Sampling buffer factor 4 
+Pretraining False 
+Valid Hilbert space size 225.0 
+
+Model parameters: 
+System NADE 
+Number of Dense layers 2 
+Number of Input features (Dense) 64 
+Number of Output Features (Dense) 16 
+Spatial orbtials per Subnetwork 2 
+Number of Phase Network layers 3 
+Number of Phase network features 512
+
+Loading molecule integrals from /data/jkocklaeuner/Master/NAQS/scripts/../data/LiH.hdf5
+HF energy -7.7673621360
+CISD energy -7.7844518529
+CCSD energy -7.7844548367
+FCI energy -7.7844602803
+Orbital Indices:  [0 1 2 3 4 5]
+Model has 274484 parameters
+Output is written to LiH_111.log
+Model parameters are saved to LiH_111.mpack
+Starting calculation at Fri Nov 11 12:46:27 2022
+Sampling time   9.37310242652893
+Energy calculation time  56.379907846450806
+Total time  94.62426447868347
+Final energy is :  -7.784e+00+1.554e-07j ± nan [σ²=0.000e+00]
