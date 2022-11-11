@@ -1,0 +1,38 @@
+Running script rnn.py 
+Check options via scripts/rnn.py --help 
+General setting:
+Molecule C2 
+Restart calculation: False 
+Spin Orbitals 20 
+Electrons (alpha beta) (6, 6) 
+Multiplicity 0 
+Seed 111 
+Iterations 10000 
+Learning rate 0.001 
+Samples per step 10000 
+Sampling buffer factor 4 
+Pretraining False 
+Valid Hilbert space size 44100.0 
+
+Model parameters: 
+System RNN 
+Number of recurrent layers 3 
+Dilation (1,2,3) 
+Memory units per layer 64 
+Number of Dense layers 2 
+Number of Input features (Dense) 64 
+Number of Output Features (Dense) 16 
+Spatial orbtials per Subnetwork 2 
+Number of Phase Network layers 3 
+Number of Phase network features 512
+
+Loading molecule integrals from /data/jkocklaeuner/Master/NAQS/data/C2.hdf5
+HF energy -74.4208597433
+CISD energy -74.6370901415
+CCSD energy -74.6744603916
+FCI energy -74.6907819191
+Orbital Indices:  [9 8 7 6 5 4 3 2 1 0]
+Model has 342868 parameters
+Output is written to C2_111.log
+Model parameters are saved to C2_111.mpack
+Starting calculation at Fri Nov 11 13:36:18 2022

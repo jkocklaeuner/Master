@@ -174,8 +174,8 @@ class RNNWeightedSampler:
         def scan_fun(carry, index):
             σ, count, subspace, carry1, carry2, carry3 = carry
             sub = subspace[index]
-            idx2 = index % 2
-            idx3 = index % 3
+            idx2 = index % 1
+            idx3 = index % 1
             p,carry1,new_carry2,new_carry3 = model.apply(
                 variables,
                 σ,

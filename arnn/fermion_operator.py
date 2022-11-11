@@ -48,59 +48,9 @@ class ElectronicOperator(AbstractOperator):
         ref: float = 0.0,
         order =  False
     ):
-        r"""
-        Constructs a fermion operator given the single terms (set of
-        creation/annihilation operators) in second quantization formalism.
-
-        This class can be initialized in the following form:
-        `FermionOperator2nd(hilbert, terms, weights ...)`.
-        The term contains pairs of `(idx, dagger)`, where `idx ∈ range(hilbert.size)`
-        (it identifies an orbital) and `dagger` is a True/False flag determining if the
-        operator is a creation or destruction operator.
-        A term of the form :math:`\hat{a}_1^\dagger \hat{a}_2` would take the form
-        `((1,1), (2,0))`, where (1,1) represents :math:`\hat{a}_1^\dagger` and (2,0)
-        represents :math:`\hat{a}_2`.
-        To split up per spin, use the creation and annihilation operators to build the
-        operator.
-
-        Args:
-            hilbert: hilbert of the resulting FermionOperator2nd object
-            terms: single term operators (see
-                example below)
-            weights: corresponding coefficients of the single term operators
-                (defaults to a list of 1)
-            constant: constant contribution, corresponding to the
-                identity operator * constant (default = 0)
-
-        Returns:
-            A FermionOperator2nd object.
-
-        Example:
-            Constructs the fermionic hamiltonian in :math:`2^{nd}` quantization
-            :math:`(0.5-0.5j)*(a_0^\dagger a_1) + (0.5+0.5j)*(a_2^\dagger a_1)`.
-
-            >>> import netket.experimental as nkx
-            >>> terms, weights = (((0,1),(1,0)),((2,1),(1,0))), (0.5-0.5j,0.5+0.5j)
-            >>> hi = nkx.hilbert.SpinOrbitalFermions(3)
-            >>> op = nkx.operator.FermionOperator2nd(hi, terms, weights)
-            >>> op
-            FermionOperator2nd(hilbert=SpinOrbitalFermions(n_orbitals=3), n_operators=2, dtype=complex128)
-            >>> terms = ("0^ 1", "2^ 1")
-            >>> op = nkx.operator.FermionOperator2nd(hi, terms, weights)
-            >>> op
-            FermionOperator2nd(hilbert=SpinOrbitalFermions(n_orbitals=3), n_operators=2, dtype=complex128)
-            >>> op.hilbert
-            SpinOrbitalFermions(n_orbitals=3)
-            >>> op.hilbert.size
-            3
-
-        """
-
-        # bring terms, weights into consistent form, autopromote dtypes if necessary
         super().__init__(hilbert)
         self._dtype = dtype
 
-        # we keep the input, in order to be able to add terms later
         self.onee_matrix = one_ints
         self.twoe_matrix = two_ints
         self._constant = constant
@@ -109,7 +59,7 @@ class ElectronicOperator(AbstractOperator):
         self.epsilon = epsilon
         self.ref = ref
         self.time = 0
-        self.indices = np.arange(hilbert.size // 2, dtype = int)#[::-1]
+        self.indices = np.arange(hilbert.size // 2, dtype = int)[::-1]
         if order:
             if order == "random":
                 np.random.shuffle(self.indices)

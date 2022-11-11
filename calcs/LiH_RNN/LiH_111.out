@@ -36,8 +36,8 @@ Orbital Indices:  [0 1 2 3 4 5]
 Model has 336724 parameters
 Output is written to LiH_111.log
 Model parameters are saved to LiH_111.mpack
-Starting calculation at Fri Nov 11 12:56:50 2022
-Sampling time   13.78712797164917
-Energy calculation time  39.86398410797119
-Total time  123.3550820350647
-Final energy is :  -7.777e+00+1.922e-08j ± nan [σ²=0.000e+00]
+Starting calculation at Fri Nov 11 13:29:19 2022
+Sampling time   14.695978879928589
+Energy calculation time  45.02725648880005
+Total time  129.26243567466736
+Final energy is :  -7.784e+00-4.986e-09j ± nan [σ²=0.000e+00]

@@ -290,8 +290,8 @@ class RNN(nn.Module):
                 for j in sub:
                     states=states.at[:,j].set(inputs[:,j])
                     states=states.at[:,(n_orbitals + j)].set(inputs[:,(n_orbitals + j)])
-            idx2 = i % 2
-            idx3 = i % 3
+            idx2 = i % 1
+            idx3 = i % 1
             x, carry1, new_carry2, new_carry3 = self._p_kernel(states,i,carry1,carry2[idx2],carry3[idx3]) 
             carry2 = carry2.at[idx2].set(new_carry2)
             carry3 = carry3.at[idx3].set(new_carry3)
