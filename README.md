@@ -33,7 +33,7 @@ TL;DR --> Most important parameters:
 
 ### NADE
 A NADE is a set of single layer feed-forward networks as depicted below.
-![NADE](/images(NADE.png)
+![NADE](images/NADE.png)
 Each subnetwork represents one or more spin orbitals. The output of a subnetwork is a set of log pobabilities, each corresponding to a given configuration of occupation numbers of the represented spin orbital. In the simplest case, a subnetwork represents a single spin orbital and outputs two probabilities, since the orbital is either occupied or not occupied. For N spin orbitals, the number of output units equals 2^N. The subnetworks are sequentially evaluated and therefore exhibit a autoregressive property. This has some advantages: By normalizing and masking the output of each subnetwork, the total wave function is normalized and physical constraints,e.g. partticle number conservation, are automatically included. By sampling occupation numbers step by step, the samples with the lowest probabilities can be truncated after each step in order to give only the samples wih the highest probability, and due to the normalization we don't have to resample states. 
 Furthermore, states which are not sampled can be truncated with a rather small error (controlled by the sample size). This enables the calculation of local energies in the subspace of sampled states, which is much more efficient compared to calculating the exact local energies. 
 In order to reduce the computational cost, the parameters are chosen real and the phase is calculated using a second, large helper network.
