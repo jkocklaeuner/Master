@@ -55,13 +55,15 @@ TL;DR --> Most important paramters:
 
 ## Optimization
 
-For convenience, simply use the provided run_MODEL.sh scripts. The required inputs are:
-- Name of a molecule, a Name.hdf5 file should be in /data
-- number of electrons
-- multiplicity
-- Number of **spatial** orbitals
-- seed for the random initialization
+For convenience, simply use the provided run_MODEL.sh scripts via `run_MODEL.sh NAME N_ELECTRONS MULTIPLICITY N_ORBITALS SEED SUBSIZE`. The required inputs are:
+- NAME: Name of a molecule, a Name.hdf5 file should be in data/
+- N_ELECTRONS: number of electrons
+- MULTIPLICITY: multiplicity, eigenvalue of the S^2 operator (default 0)
+- N_ORBITALS: Number of **spatial** orbitals
+- SEED: seed for the random initialization
+- SUBSIZE: number of spatial orbitals combined in a subnetwork, only required for NADE and RNN
 
+A comprehensive overview over the required parameters i given in the paper of [Barett](https://arxiv.org/pdf/2109.12606.pdf) in Table I.
 More optimization specific settings, e.g. number of samples, learning rate, etc.,  can be set in the .sh files. For all avaialble options read the --help option of the /scripts/model.py files. 
 
 ## Preoptimization
