@@ -2,7 +2,7 @@
 
 ## Intro
 
-This respository contains tools to apply Neural Network Quantum States (NNQS) to quantum chemistry tasks. It follows the work of [Barett et al.](https://arxiv.org/pdf/2109.12606.pdf) and enables calculations with autoregressive NADE models, recurrent neural networks (RNN) models and restricted Boltzmann machines. The implementation is based on the [NetKet](https://www.netket.org/) package and enables fast execution on GPU and CPU via [Jax](https://jax.readthedocs.io/en/latest/#).
+This respository contains tools to apply Neural Network Quantum States (NNQS) to quantum chemistry tasks. It follows the work of [Barrett et al.](https://arxiv.org/pdf/2109.12606.pdf) and enables calculations with autoregressive NADE models, recurrent neural networks (RNN) models and restricted Boltzmann machines. The implementation is based on the [NetKet](https://www.netket.org/) package and enables fast execution on GPU and CPU via [Jax](https://jax.readthedocs.io/en/latest/#).
 
 ## Setup
 
