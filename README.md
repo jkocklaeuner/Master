@@ -48,6 +48,7 @@ TL;DR --> Most important parameters:
 
 ### RNN
 A recurrent network is commonly used in sequence modelling and can capture correlations by passing a memory vector from cell to cell. If applied to a sequence of occupation numbers, it obey the autoregresssive property and allows for efficient sampling similar to NADE. In this implementation, we use a recurrent netowrk with shared weights constructed from a dense input layer, three recurrent layers and a dense output layer. For more information on recurrent neural network wave function please see the paper of [Hibat-Allah](https://journals.aps.org/prresearch/pdf/10.1103/PhysRevResearch.2.023358). 
+
 TL;DR --> Most important paramters:
 - The same as NADE (both autoregressive)
 - feature size applies only to dense input and phase layers
