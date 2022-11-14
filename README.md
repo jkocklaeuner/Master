@@ -66,7 +66,7 @@ For convenience, simply use the provided run_MODEL.sh scripts via `run_MODEL.sh 
 
 A comprehensive overview over the required parameters is given in the paper of [Barett](https://arxiv.org/pdf/2109.12606.pdf) in Table I.
 More optimization specific settings, e.g. number of samples, learning rate, etc.,  can be set in the .sh files. For all avaialble options read the --help option of the /scripts/model.py files. 
-As a minimal example, run `run_MODEL.sh H2 2 0 2 111`, the optimization can be monitored using `python -m scripts.energy H2O_111.log` in the directory calcs/H2O_MODEL. A plot of the optimization is obtained by using `python -m scripts.plot -f H2O_111 -r FCI_ENERGY -s log`.
+As a minimal example, run `run_MODEL.sh H2 2 0 2 111`, the optimization can be monitored using `python -m scripts.energy H2_111.log` in the directory calcs/H2_MODEL. A plot of the optimization is obtained by using `python -m scripts.plot -f H2_111 -r FCI_ENERGY -s log`.
 
 ## Preoptimization
 It is possible to train autoregressive models towards an approximate wave function (e.g. from a MP2 or CISD calculation). This is included in the option pretraing option, the target wave function can be set in the model.py files. The training is performed until a given overlap is reached or to a maximum of 20000 steps. Note that preoptimizations for larger systems can take some time since the MP2 and CISD implementations are inefficient.
