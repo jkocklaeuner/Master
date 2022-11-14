@@ -19,6 +19,7 @@ setuptools.setup(
         "netket==3.4.2",
         "openfermion",
         "matplotlib",
-        "jaxlib>=0.1, <0.3"	]
+        "jaxlib>=0.1, <0.3",	
+         "jax==0.2.28" ]
         
 )
