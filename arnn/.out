@@ -1,4 +1,0 @@
-usage: exp.py [-h] -n [NAME] [-lr LEARNINGRATE] [-l LOADSTATE] [-eps EPSILON]
-              [-s SAMPLES] [-i ITERATIONS] [-m MAGNETIZATION] [-e ELECTRONS]
-              [-o ORBITALS]
-exp.py: error: argument -o/--orbitals: expected one argument
