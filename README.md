@@ -6,7 +6,7 @@ This respository contains tools to apply Neural Network Quantum States (NNQS) to
 
 ## Setup
 
-The calculation requires `python >= 3.7` (eventually <= 3.10) the [NetKet Version 3.3.2](https://netket.readthedocs.io/en/latest/docs/install.html) and [OpenFermion](https://quantumai.google/openfermion/install) package following the instructions in the links. The installation can be performed using `pip`or `conda`, note that the pip installation is recommended by the developers. Please add the repository directory to your PYTHONPATH and PATH variable. All code implemented in this work can be found in the [arnn](arnn/) section, the molecular data saved as OpenFermion operators is provided in the [data](data/) section. The molecular data is obtained from Hartree-Fock calculations using [Openfermionpsi4](https://github.com/quantumlib/OpenFermion-Psi4), currently integrals for small molecules with up to 28 spatial orbitals (C2_pvdz) are provided here. If not otherwise stated by the filename, a minimal STO-3G basis is used in the calculation. Note that only systems up to the size of Li2O have been thoroughly tested and larger calculations are not recommended. 
+The calculation requires `python >= 3.7` (eventually <= 3.10) the [NetKet Version 3.3.2](https://netket.readthedocs.io/en/latest/docs/install.html) and [OpenFermion](https://quantumai.google/openfermion/install) package following the instructions in the links. To install the package including dependencies, please run `pip install --user -e .` . If you want to use utils to track calculations, add the scripts directory to your PATH variable. All code implemented in this work can be found in the [arnn](arnn/) section, the molecular data saved as OpenFermion operators is provided in the [data](data/) section. The molecular data is obtained from Hartree-Fock calculations using [Openfermionpsi4](https://github.com/quantumlib/OpenFermion-Psi4), currently integrals for small molecules with up to 28 spatial orbitals (C2_pvdz) are provided here. If not otherwise stated by the filename, a minimal STO-3G basis is used in the calculation. Note that only systems up to the size of Li2O have been thoroughly tested and larger calculations are not recommended. 
 In [scripts](scripts/) the run scripts as well as two basic tools for monitoring the optimization are provided:
 - `scripts/energy.py` outputs the variational energies of the last steps
 - `scripts/plot.py` creates a basic plot of the optimization run versus a reference value. 
@@ -47,7 +47,7 @@ TL;DR --> Most important parameters:
 - for more informations, type `scripts/nade.py --help
 
 ### RNN
-A recurrent network is commonly used in sequence modelling and can capture correlations by passing a memory vector from cell to cell. If applied to a sequence of occupation numbers, it obey the autoregresssive property and allows for efficient sampling similar to NADE. In this implementation, we use a recurrent netowrk with shared weights constructed from a dense input layer, three recurrent layers and a dense output layer. To capute long range correlations, a dilated version is implemeneted with dilation factors 1,2,3 for the three stacked recurret layers. For more information on recurrent neural network wave function please see the paper of [Hibat-Allah](https://journals.aps.org/prresearch/pdf/10.1103/PhysRevResearch.2.023358). 
+A recurrent network is commonly used in sequence modelling and can capture correlations by passing a memory vector from cell to cell. If applied to a sequence of occupation numbers, it obey the autoregresssive property and allows for efficient sampling similar to NADE. In this implementation, we use a recurrent netowrk with shared weights constructed from a dense input layer, three recurrent layers and a dense output layer. For more information on recurrent neural network wave function please see the paper of [Hibat-Allah](https://journals.aps.org/prresearch/pdf/10.1103/PhysRevResearch.2.023358). 
 TL;DR --> Most important paramters:
 - The same as NADE (both autoregressive)
 - feature size applies only to dense input and phase layers
@@ -65,6 +65,7 @@ For convenience, simply use the provided run_MODEL.sh scripts via `run_MODEL.sh 
 
 A comprehensive overview over the required parameters i given in the paper of [Barett](https://arxiv.org/pdf/2109.12606.pdf) in Table I.
 More optimization specific settings, e.g. number of samples, learning rate, etc.,  can be set in the .sh files. For all avaialble options read the --help option of the /scripts/model.py files. 
+As a minimal example, run `run_MODEL.sh H2 2 0 2 111`.
 
 ## Preoptimization
 It is possible to train autoregressive models towards an approximate wave function (e.g. from a MP2 or CISD calculation). This is included in the option pretraing option, the target wawve function can be set in the model.py files. The training is performed until a given overlap is reached or to a maximum of 20000 steps Note that preoptimizations for larger systems can take some time since the MP2 and CISD impleemntations are inefficient.
