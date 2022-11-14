@@ -11,7 +11,7 @@ ORBITALS=$4 # Spatial Orbitals
 SAMPLES=10000 # Unique Samples
 LR=0.001 # learning rate
 SEED=$5 # Random Seed
-SUBSIZE=2  #Number of spatial orbitals per subnetwork
+SUBSIZE=1  #Number of spatial orbitals per subnetwork
 
 echo "Running calculation in calcs/${NAME}_$SPEC"
 echo "Molecule $NAME  
