@@ -1,16 +1,3 @@
-# Copyright 2021 The NetKet Authors - All rights reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#    http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 
 import jax.numpy as jnp
 import optax
@@ -125,10 +112,10 @@ f"Number of Phase network features {n_features * 8}\n"
 hi = nkx.hilbert.SpinOrbitalFermions(number_of_orbitals,1/2,n_alpha_beta)  # Number of electrons can be a list with [alpha,beta] spin!
 
 #############################
-#Define Hamiltonian, use prepared OpenFermion operator!
+#Define Hamiltonian, use prepared OpenFermion operator
 ############################
-file_name = os.path.join(loc, f'../data/{name}.hdf5')
-ha =ElectronicOperator.from_openfermion(hi,file_name)
+file_name = os.path.join(loc, f"../data/{name}.hdf5")
+ha = ElectronicOperator.from_openfermion(hi,file_name)
 
 # Autoregressive neural network
 
@@ -174,9 +161,7 @@ if pretrain:
         vs,
         ma,
         data[mask],
-        file_name = os.path.join(loc, f'../data/{name}.hdf5')
-ha =ElectronicOperator.from_openfermion(hi,file_name)
-n_steps = pre_steps,
+        n_steps = pre_steps,
         norm = True)
     
     vs.parameters = variables

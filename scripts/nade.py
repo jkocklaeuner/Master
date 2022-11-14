@@ -1,16 +1,3 @@
-# Copyright 2021 The NetKet Authors - All rights reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#    http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 
 import jax.numpy as jnp
 import optax
@@ -51,6 +38,8 @@ parser.add_argument('-p','--pretrain',type = bool, default = False, help = "Perf
 parser.add_argument('-f','--features',type=int,default = 64, help = "Number of hidden layer neurons for Dense layers, phase layers are multiplied by a factor 8" )
 parser.add_argument('-l','--layers',type=int,default = 2, help = "Number of Dense layers of the phase network (+ 1 output layer of size 4) and each subnetwork (1 layer = output layer)")
 parser.add_argument('-b','--buffer',type=int,default = 4, help = "Size of the sampling buffer multiplied with the number of samples, #buffer * #samples unique states are sampled and the #samples states with the largest amplitudes are used in the calculation" ) 
+parser.add_argument("-d","--diagonalize", type=bool,default=False,help = "Diagonalize subspace at each iteration, dont use this option with large subspaces!")
+
 args = parser.parse_args()
 
 
@@ -99,6 +88,7 @@ f"Samples per step {samples} \n"
 f"Sampling buffer factor {s_buffer} \n"
 f"Pretraining {bool(pretrain)} \n"
 f"Valid Hilbert space size {binom(number_of_orbitals,alpha) * binom(number_of_orbitals,beta)} \n"
+f"Diagonalize subspace {args.diagonalize} \n"
 f"\n"
 f"Model parameters: \n" 
 f"System NADE \n"
@@ -124,7 +114,7 @@ hi = nkx.hilbert.SpinOrbitalFermions(number_of_orbitals,1/2,n_alpha_beta)  # Num
 #Define Hamiltonian, use prepared OpenFermion operator!
 ############################
 file_name = os.path.join(loc, f'../data/{name}.hdf5')
-ha =ElectronicOperator.from_openfermion(hi,file_name)
+ha =ElectronicOperator.from_openfermion(hi,file_name,diag = args.diagonalize)
 
 # Autoregressive neural network
 
@@ -191,5 +181,8 @@ end = time.time()
 print("Sampling time  ", vs.sample_time)
 print("Energy calculation time ", ha.time)
 print("Total time ", end-start)
-
 print("Final energy is : ", vs.expect(ha))
+
+if args.diagonalize:
+    np.savetxt("eigvals.txt",ha.eig_vals)
+    print("Saved subspace eigenvalues to eigvals.txt") 

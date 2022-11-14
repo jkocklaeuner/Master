@@ -29,7 +29,7 @@ from netket.hilbert.abstract_hilbert import AbstractHilbert
 from netket.utils.numbers import is_scalar
 import time
 from netket.experimental.hilbert import SpinOrbitalFermions
-from scipy import sparse
+from scipy.sparse.linalg import eigsh
 
 class ElectronicOperator(AbstractOperator):
 
@@ -46,7 +46,8 @@ class ElectronicOperator(AbstractOperator):
         dtype: DType = None,
         epsilon : float = 0.0,
         ref: float = 0.0,
-        order =  False
+        order =  False,
+        diag = False
     ):
         super().__init__(hilbert)
         self._dtype = dtype
@@ -71,7 +72,9 @@ class ElectronicOperator(AbstractOperator):
         #idx[1] = idx[1][::-1]
         #self.indices = np.ravel(idx.T)
         print("Orbital Indices: ",self.indices)
-
+        self.diag = diag
+        if diag:
+            self.eig_vals = np.empty(0)
 
     def _reset_caches(self):
         """
@@ -289,6 +292,10 @@ class ElectronicOperator(AbstractOperator):
         self.idx_dict,
         self.indices
 )       
+
+        if self.diag:
+            val = eigsh(self.h,k=1)
+            self.eig_vals = np.append(self.eig_vals[0],val) 
         end = time.time()
         self.time += end - start
         #print(f"Energy calculation took {end - start} seconds")
@@ -377,7 +384,8 @@ class ElectronicOperator(AbstractOperator):
         of_file: str = "",  # noqa: F821
         *,
         n_orbitals: Optional[int] = None,
-        frozen: int = 0
+        frozen: int = 0,
+        diag: bool = False
     ):
         r"""
         Converts an openfermion FermionOperator into a netket FermionOperator2nd.
@@ -437,7 +445,7 @@ class ElectronicOperator(AbstractOperator):
         active = spatial[frozen:]
         core,one_ints,two_ints = molecule.get_active_space_integrals(occupied_indices=occ,active_indices=active)
         constant =  molecule.nuclear_repulsion + core
-        operator = ElectronicOperator(hilbert, one_ints, two_ints, constant=constant, epsilon = epsilon,ref =  hf)
+        operator = ElectronicOperator(hilbert, one_ints, two_ints, constant=constant, epsilon = epsilon,ref =  hf, diag = diag)
         return operator
 
 

@@ -1,6 +1,5 @@
 ####################################
 # Implementation of an fermionic ARNN following Barett 2022
-# Modification of the NetKet.nn class: MasekdDense1D
 # Includes symmetries directly, requires the use of a different sampler!
 ######################################
 
